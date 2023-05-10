@@ -4,6 +4,10 @@ router.get("/", (req, res) => {
   res.render("home");
 });
 
+router.get("/article/:id", (req, res) => {
+  res.render("article");
+});
+
 router.get("/signup", (req, res) => {
   res.render("signup");
 });
