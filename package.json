@@ -2,7 +2,7 @@
   "name": "module-14-challenge",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +16,7 @@
     "express-handlebars": "^7.0.7",
     "express-session": "^1.17.3",
     "mysql2": "^3.3.1",
+    "path": "^0.12.7",
     "sequelize": "^6.31.1"
   }
 }
