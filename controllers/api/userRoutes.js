@@ -1,6 +1,22 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 
+router.post("/username", async (req, res) => {
+  try {
+    usernameExists = await User.findOne({
+      where: { username: req.body.username },
+    });
+
+    if (usernameExists) {
+      res.sendStatus(400);
+    } else {
+      res.sendStatus(200);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 router.post("/signup", async (req, res) => {
   try {
     userData = await User.create({
