@@ -20,4 +20,8 @@ router.get("/dashboard", (req, res) => {
   res.render("dashboard");
 });
 
+router.get("/new-post", (req, res) => {
+  res.render("new-post");
+});
+
 module.exports = router;

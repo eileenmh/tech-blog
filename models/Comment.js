@@ -10,7 +10,7 @@ Comment.init(
       allowNull: false,
       primaryKey: true,
     },
-    body: {
+    content: {
       type: DataTypes.STRING,
       allowNull: false,
     },
