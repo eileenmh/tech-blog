@@ -1,8 +1,8 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Article extends Model {}
+class Comment extends Model {}
 
-Article.init({}, {});
+Comment.init({}, {});
 
-module.exports = Article;
+module.exports = Comment;

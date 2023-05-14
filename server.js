@@ -1,5 +1,9 @@
+const sequelize = require("./config/connection");
 const express = require("express");
 const app = express();
+const PORT = process.env.PORT || 3001;
+
+const models = require("./models");
 
 const { engine } = require("express-handlebars");
 const routes = require("./controllers");
@@ -10,4 +14,11 @@ app.set("views", "./views");
 
 app.use(routes);
 
-app.listen(3000);
+sequelize
+  .sync()
+  .then(() => {
+    app.listen(PORT, () =>
+      console.log(`Now listening at http://localhost:${PORT}/`)
+    );
+  })
+  .catch((err) => console.error("Unable to create table: ", err));
