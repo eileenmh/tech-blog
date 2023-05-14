@@ -1,4 +1,4 @@
-async function checkUsername() {
+usernameAvailable = async () => {
   const username = $("#username").val().trim();
 
   const response = await fetch("/api/users/username", {
@@ -6,13 +6,23 @@ async function checkUsername() {
     body: JSON.stringify({ username }),
     headers: { "Content-Type": "application/json" },
   });
-}
+
+  if (response.status === 200) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 async function signUp(event) {
   event.preventDefault();
 
   const username = $("#username").val().trim();
   const password = $("#password").val().trim();
+
+  if ((await usernameAvailable()) === false) {
+    return;
+  }
 
   if (username && password) {
     const response = await fetch("/api/users/signup", {
@@ -27,5 +37,5 @@ async function signUp(event) {
 
 $(document).ready(function () {
   $("#signUpBtn").on("click", signUp);
-  $("#username").on("focusout", checkUsername);
+  $("#username").on("focusout", usernameAvailable);
 });
