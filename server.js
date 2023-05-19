@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const models = require("./models");
+// const models = require("./models");
 
 const { engine } = require("express-handlebars");
 const routes = require("./controllers");
