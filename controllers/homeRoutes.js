@@ -1,7 +1,17 @@
 const router = require("express").Router();
+const { Sequelize } = require("sequelize");
+const { Article, User } = require("../models");
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+  let articleData = await Article.findAll({
+    raw: true,
+    include: {
+      model: User,
+    },
+  });
+
   res.render("home", {
+    articles: articleData,
     logged_in: req.session.logged_in,
   });
 });
