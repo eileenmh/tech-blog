@@ -5,14 +5,17 @@ const { Article, User } = require("../models");
 // Homepage
 router.get("/", async (req, res) => {
   let articleData = await Article.findAll({
-    raw: true,
-    include: {
-      model: User,
-    },
+    include: [
+      {
+        model: User,
+        attributes: ["username", "createdAt"],
+      },
+    ],
   });
+  const articles = articleData.map((article) => article.get({ plain: true }));
 
   res.render("home", {
-    articles: articleData,
+    articles,
     logged_in: req.session.logged_in,
   });
 });
@@ -20,8 +23,16 @@ router.get("/", async (req, res) => {
 // load one article
 router.get("/article/:id", async (req, res) => {
   try {
-    const articleData = await Article.findByPk(req.params.id);
+    const articleData = await Article.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["username", "createdAt"],
+        },
+      ],
+    });
     const article = articleData.get({ plain: true });
+    console.log(article);
 
     res.render("article", {
       logged_in: req.session.logged_in,
