@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Sequelize } = require("sequelize");
 const { Article, User } = require("../models");
 
+// Homepage
 router.get("/", async (req, res) => {
   let articleData = await Article.findAll({
     raw: true,
@@ -16,10 +17,20 @@ router.get("/", async (req, res) => {
   });
 });
 
-router.get("/article/:id", (req, res) => {
-  res.render("article", {
-    logged_in: req.session.logged_in,
-  });
+// load one article
+router.get("/article/:id", async (req, res) => {
+  try {
+    const articleData = await Article.findByPk(req.params.id);
+    const article = articleData.get({ plain: true });
+
+    res.render("article", {
+      logged_in: req.session.logged_in,
+      article,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 router.get("/signup", (req, res) => {
