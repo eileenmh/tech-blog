@@ -1,30 +1,32 @@
-usernameAvailable = async () => {
+const usernameAvailable = async () => {
   const username = $("#username").val().trim();
 
-  const response = await fetch("/api/users/username", {
-    method: "POST",
-    body: JSON.stringify({ username }),
-    headers: { "Content-Type": "application/json" },
-  });
+  if (username.length > 0) {
+    const response = await fetch("/api/users/username", {
+      method: "POST",
+      body: JSON.stringify({ username }),
+      headers: { "Content-Type": "application/json" },
+    });
 
-  if (response.status === 200) {
-    // username is available
-    $("#username-helper")
-      .removeClass("is-danger hide")
-      .addClass("is-success")
-      .html("This username is available.");
-    return true;
-  } else {
-    // username is unavailable
-    $("#username-helper")
-      .removeClass("is-success hide")
-      .addClass("is-danger")
-      .html("This username is already taken.");
-    return false;
+    if (response.status === 200) {
+      // username is available
+      $("#username-helper")
+        .removeClass("is-danger hide")
+        .addClass("is-success")
+        .html("This username is available.");
+      return true;
+    } else {
+      // username is unavailable
+      $("#username-helper")
+        .removeClass("is-success hide")
+        .addClass("is-danger")
+        .html("This username is already taken.");
+      return false;
+    }
   }
 };
 
-strongPassword = () => {
+const strongPassword = () => {
   const password = $("#password").val().trim();
 
   mustContainArrays = [
