@@ -57,10 +57,28 @@ router.get("/login", (req, res) => {
   });
 });
 
-router.get("/dashboard", withAuth, (req, res) => {
-  res.render("dashboard", {
-    logged_in: req.session.logged_in,
-  });
+router.get("/dashboard", withAuth, async (req, res) => {
+  try {
+    let articleData = await Article.findAll({
+      where: { userId: req.session.user_id },
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
+    });
+
+    const articles = articleData.map((article) => article.get({ plain: true }));
+
+    res.render("dashboard", {
+      articles,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 router.get("/new-post", (req, res) => {

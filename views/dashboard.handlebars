@@ -1,1 +1,9 @@
-<button onclick="window.location.href='/new-post'">New Post</button>
+<div>
+    <h1 class="title">Your Posts</h1>
+    <button class="button is-primary right mb-2" onclick="window.location.href='/new-post'">New Post</button>
+</div>
+    <section class="articles">
+        {{#each articles as |article|}}
+        {{> article-card}}
+        {{/each}}
+    </section>
