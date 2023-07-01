@@ -2,7 +2,7 @@
 <div class="card" id="article" data-id={{article.id}}>
     <header class="card-header">
         <p class="card-header-title">{{article.title}}</p>
-        <p class="my-3 mx-4">Posted by {{user.username}} on {{format_date createdAt}}</p>
+        <p class="my-3 mx-4">Posted by {{user.username}} on {{format_date article.createdAt}}</p>
     </header>
     <div class="card-content">
         <div class="content">
