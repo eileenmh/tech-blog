@@ -2,12 +2,12 @@
     <a href="/article/{{id}}">
         <header class="card-header">
             <p class="card-header-title">{{title}}</p>
-            <p>Posted by {{user.username}} on {{createdAt}}</p>
+            <p class="my-3 mx-4">Posted by {{user.username}} on {{format_date createdAt}}</p>
         </header>
+    </a>
         <div class="card-content">
             <div class="content">
                 <p>{{content}}</p>
             </div>                    
         </div>
-    </a>
 </div>
