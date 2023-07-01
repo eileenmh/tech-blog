@@ -2,7 +2,7 @@
 <div class="card" id="article" data-id={{article.id}}>
     <header class="card-header">
         <p class="card-header-title">{{article.title}}</p>
-        <p>Posted by {{article.user.username}} on {{article.createdAt}}</p>
+        <p class="my-3 mx-4">Posted by {{user.username}} on {{format_date createdAt}}</p>
     </header>
     <div class="card-content">
         <div class="content">
@@ -11,7 +11,8 @@
     </div>
 </div>
 
-<form>
+<form class="my-3">
+    <h3>Leave a comment:</h3>
     <div class="field">
         <div class="control">
             <textarea class="input" id="comment" rows="4" cols="50" required></textarea>
