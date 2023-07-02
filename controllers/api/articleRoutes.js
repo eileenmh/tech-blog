@@ -50,6 +50,8 @@ router.post("/comment", async (req, res) => {
       articleId: req.body.articleId,
       userId: req.session.user_id,
     });
+
+    res.status(200).send("Comment successfully created.");
   } catch (err) {
     console.log("err: ", err);
     res.status(400).json(err);
