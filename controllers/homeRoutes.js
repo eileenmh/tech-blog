@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const withAuth = require("../utils/auth");
 const { Sequelize } = require("sequelize");
-const { Article, User } = require("../models");
+const { Article, User, Comment } = require("../models");
 
 // Homepage
 router.get("/", async (req, res) => {
@@ -38,10 +38,24 @@ router.get("/article/:id", async (req, res) => {
 
     const createdByUser = article.userId === req.session.user_id;
 
+    const commentData = await Comment.findAll({
+      where: { articleId: req.params.id },
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
+    });
+
+    const comments = commentData.map((comment) => comment.get({ plain: true }));
+    console.log(comments);
+
     res.render("article", {
       logged_in: req.session.logged_in,
       article,
       createdByUser,
+      comments,
     });
   } catch (err) {
     console.log(err);
