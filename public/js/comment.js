@@ -1,4 +1,13 @@
-createComment = async (event) => {
+// const editPost = async (event) => {
+//   event.preventDefault();
+//   console.log("Edit post button clicked");
+//   const articleId = $(event.target).parents("#article").attr("data-id");
+
+//   const response = await fetch("/api/article/e")
+//   console.log(articleId);
+// };
+
+const createComment = async (event) => {
   event.preventDefault();
   console.log("Create comment button clicked");
 
@@ -20,4 +29,5 @@ createComment = async (event) => {
 
 $(document).ready(function () {
   $("#createComment").on("click", createComment);
+  $("#editPost").on("click", editPost);
 });

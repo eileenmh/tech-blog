@@ -7,7 +7,12 @@
     <div class="card-content">
         <div class="content">
             <p>{{article.content}}</p>
-        </div>                    
+        </div>
+        {{#if createdByUser}}
+            <button class="button is-small is-light" id="editPost" onclick="window.location.href='/article/{{article.id}}/edit'">Edit</button>
+            <button class="button is-small is-light">Delete</button>
+        {{else}}
+        {{/if}}
     </div>
 </div>
 

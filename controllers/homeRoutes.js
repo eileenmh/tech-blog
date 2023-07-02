@@ -35,7 +35,34 @@ router.get("/article/:id", async (req, res) => {
     const article = articleData.get({ plain: true });
     console.log(article);
 
+    const createdByUser = article.userId === req.session.user_id;
+
     res.render("article", {
+      logged_in: req.session.logged_in,
+      article,
+      createdByUser,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// edit one article
+router.get("/article/:id/edit", async (req, res) => {
+  try {
+    const articleData = await Article.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["username", "createdAt"],
+        },
+      ],
+    });
+    const article = articleData.get({ plain: true });
+    console.log(article);
+
+    res.render("edit-post", {
       logged_in: req.session.logged_in,
       article,
     });
