@@ -29,6 +29,7 @@ const createComment = async (event) => {
 
   if (response.ok) {
     console.log(response);
+    document.location.replace(`/article/${articleId}`);
   } else {
     console.log("No luck.");
   }
