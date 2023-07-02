@@ -31,6 +31,18 @@ router.put("/update", async (req, res) => {
   }
 });
 
+router.delete("/delete", async (req, res) => {
+  try {
+    const article = await Article.findByPk(req.body.id);
+    const response = await article.destroy();
+
+    res.status(200).send("success!");
+  } catch (err) {
+    console.log("err: ", err);
+    res.status(400).json(err);
+  }
+});
+
 router.post("/comment", async (req, res) => {
   try {
     Comment.create({
