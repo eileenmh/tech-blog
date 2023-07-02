@@ -36,6 +36,5 @@ const createComment = async (event) => {
 
 $(document).ready(function () {
   $("#createComment").on("click", createComment);
-  $("#editPost").on("click", editPost);
   $("#deletePost").on("click", deletePost);
 });
