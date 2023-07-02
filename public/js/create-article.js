@@ -11,6 +11,7 @@ createArticle = async (event) => {
   });
 
   if (response.ok) {
+    document.location.replace(`/dashboard`);
     console.log("Success!");
   } else {
     console.log("No luck.");

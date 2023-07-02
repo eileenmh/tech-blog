@@ -1,3 +1,29 @@
 .hide {
     visibility: hidden;
 }
+
+.comment {
+    position: relative;
+    margin: 20px auto;
+}
+
+.comment-heading {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    font-size: 14px;
+}
+
+.comment-author:hover {
+    text-decoration: underline;
+}
+
+.comment-createdAt {
+    color: rgba(0, 0, 0, 0.5);
+    margin-left: 10px;
+}
+
+.comment-body {
+    padding: 0 20px;
+    padding-left: 28px;
+}

@@ -11,4 +11,9 @@ logout = async () => {
 
 $(document).ready(function () {
   $("#logoutBtn").on("click", logout);
+
+  $("#burger").on("click", function () {
+    $(this).toggleClass("is-active");
+    $("#pages").toggleClass("is-active");
+  });
 });
