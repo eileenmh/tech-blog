@@ -12,6 +12,7 @@ router.get("/", async (req, res) => {
         attributes: ["username"],
       },
     ],
+    order: [["createdAt", "DESC"]],
   });
   const articles = articleData.map((article) => article.get({ plain: true }));
 
