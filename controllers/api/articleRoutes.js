@@ -9,7 +9,22 @@ router.post("/create", async (req, res) => {
       userId: req.session.user_id,
     });
 
-    res.status(200);
+    res.status(200).send("success!");
+  } catch (err) {
+    console.log("err: ", err);
+    res.status(400).json(err);
+  }
+});
+
+router.put("/update", async (req, res) => {
+  try {
+    const article = await Article.findByPk(req.body.id);
+    const response = await article.update({
+      title: req.body.title,
+      content: req.body.content,
+    });
+
+    res.status(200).send("success!");
   } catch (err) {
     console.log("err: ", err);
     res.status(400).json(err);
