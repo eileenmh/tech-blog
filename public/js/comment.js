@@ -28,7 +28,7 @@ const createComment = async (event) => {
   });
 
   if (response.ok) {
-    console.log("Success!");
+    console.log(response);
   } else {
     console.log("No luck.");
   }
