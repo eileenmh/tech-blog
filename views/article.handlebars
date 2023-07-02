@@ -17,15 +17,9 @@
 </div>
 
 <div class="comment-thread">
-    <div class="comment">
-        <div class="comment-heading">
-            <div class="comment-author">imadeacomment</div>
-            <div class="comment-createdAt">07/03/2023</div>
-        </div>
-        <div class="comment-body">
-            <p>Here's a comment that I'm making!!</p>
-        </div>
-    </div>
+    {{#each comments as |comment|}}
+    {{> comment}}
+    {{/each}}
 </div>
 
 
