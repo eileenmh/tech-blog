@@ -10,7 +10,7 @@
         </div>
         {{#if createdByUser}}
             <button class="button is-small is-light" id="editPost" onclick="window.location.href='/article/{{article.id}}/edit'">Edit</button>
-            <button class="button is-small is-light">Delete</button>
+            <button class="button is-small is-light" id="deletePost">Delete</button>
         {{else}}
         {{/if}}
     </div>
